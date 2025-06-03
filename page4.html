@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday - Page 4</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .message {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #f48fb1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #f48fb1, #e91e63, #f48fb1);
+            animation: rainbow 2s linear infinite;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        h1 {
+            color: #e91e63;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        p {
+            font-size: 1.2em;
+            color: #880e4f;
+            line-height: 1.6;
+            text-align: left;
+            margin: 20px 0;
+            opacity: 0;
+            animation: textIn 1s forwards;
+        }
+        
+        @keyframes textIn {
+            to { opacity: 1; }
+        }
+        
+        .btn {
+            background-color: #f48fb1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #f06292;
+            transform: scale(1.1);
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #e91e63;
+            opacity: 0;
+            animation: fly 4s linear infinite;
+        }
+        
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            <h1>langsung aja, my wish for u</h1>
+            <p style="animation-delay: 0.5s">semoga ditahun ini kita masih bisa tetep bareng terus,</p>
+            <p style="animation-delay: 1s">bisa sehat dan sering jalan-jalan juga.</p>
+            <p style="animation-delay: 1.5s">kurangi ngambekannya yaa,</p>
+            <p style="animation-delay: 2s">meskipun mustahil sih, kamu kan singa.</p>
+            <p style="animation-delay: 2.5s">pokok apapun yang terbaik buat kamu tahun ini.</p>
+        </div>
+        
+        <button class="btn" onclick="nextPage()">Klik aku</button>
+    </div>
+    
+    <script>
+        function createHearts() {
+            const container = document.querySelector('.container');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = '100vh';
+                heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+                heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 300);
+        }
+        
+        function nextPage() {
+            document.body.style.animation = 'slideUp 1s forwards';
+            setTimeout(() => {
+                window.location.href = '/page5';
+            }, 1000);
+        }
+        
+        // Add slideUp animation dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes slideUp {
+                to { opacity: 0; transform: translateY(-100px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        window.onload = function() {
+            createHearts();
+        };
+    </script>
+</body>
+</html>

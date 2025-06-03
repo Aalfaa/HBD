@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday - Final Page</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .message {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 3px double #f48fb1;
+            transform: scale(0);
+            animation: heartBeat 1s forwards 0.5s;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(0); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(0.9); }
+            60% { transform: scale(1.05); }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #e91e63;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2em;
+            color: #ad1457;
+            margin-top: 40px;
+            transform: rotate(-5deg);
+            display: inline-block;
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #f8bbd0;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .btn {
+            background-color: #f48fb1;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #f06292;
+            transform: scale(1.1);
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: gold;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: -1;
+            animation: sparkle 1s infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="photo-frame">💖</div>
+        <div class="message">
+            <h1>terima kasih karna udah hadir di hidupku</h1>
+            <div class="signature">~ Alvian Farhat</div>
+        </div>
+        
+        <button class="btn" onclick="restart()">Kembali ke awal</button>
+    </div>
+    
+    <script>
+        function createSparkles() {
+            const container = document.querySelector('.container');
+            
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.animationDelay = `${Math.random() * 0.5}s`;
+                container.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }, 100);
+        }
+        
+        function restart() {
+            document.body.style.animation = 'fadeOut 1s forwards';
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1000);
+        }
+        
+        // Add fadeOut animation dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeOut {
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        window.onload = function() {
+            createSparkles();
+        };
+    </script>
+</body>
+</html>
